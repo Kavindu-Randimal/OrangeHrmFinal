@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     },
 
     container_TERTIARY:{
-
     },
 
     text : {
@@ -48,7 +47,8 @@ const styles = StyleSheet.create({
     },
 
     text_TERTIARY : {
-        color: "gray"
+        color: "gray",
+        fontWeight:'normal'
     }
 
 

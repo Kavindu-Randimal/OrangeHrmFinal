@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { View,Text, Image, StyleSheet, useWindowDimensions} from 'react-native';
+import { View,Text, Image, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
 import Logo from '../../../assets/images/logo.png';
 import CustomButton from '../CustomButton';
 import CustomInput from '../CustomInput';
+import Footer from '../Footer';
 
 const SignInScreen = () =>{
 
@@ -30,6 +31,7 @@ const SignInScreen = () =>{
 
     return(
       <View style={styles.root}>
+        <ScrollView>
         <Image 
           source={Logo} 
           style={[styles.logo, {height: height * 0.3}]} 
@@ -72,6 +74,8 @@ const SignInScreen = () =>{
          onPress={onSignUpPress} 
          type = "TERTIARY"
          />
+        </ScrollView>
+         <Footer/>
       </View>
     )
 }
@@ -80,14 +84,15 @@ const styles = StyleSheet.create({
 
     root:{
         alignItems : "center",
-        padding: 40,
+        padding: 5,
+        flex:1
     },
     logo: {
-        width: '80%',
+        width: '100%',
         maxWidth :300,
         maxHeight :100,
         height: 150,
-        paddingBottom:300
+        paddingBottom:200
     },
 })
 

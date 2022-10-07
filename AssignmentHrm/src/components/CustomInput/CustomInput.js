@@ -33,7 +33,9 @@ const styles = StyleSheet.create({
         marginVertical : 5,
     },
 
-    input:{}
+    input:{
+      padding:5
+    }
 })
 
 export default CustomInput;

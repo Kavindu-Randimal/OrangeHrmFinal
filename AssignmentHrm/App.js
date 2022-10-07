@@ -18,6 +18,8 @@ import {
 
 import SignInScreen from './src/components/SignInScreen';
 import SignUpScreen from './src/components/SignUpScreen';
+import HomeScreen from './src/components/HomeScreen';
+import Footer from './src/components/Footer';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
