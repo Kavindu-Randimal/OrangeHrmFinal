@@ -15,32 +15,16 @@ import {
   useColorScheme,
 } from 'react-native';
 
-
 import SignInScreen from './src/components/SignInScreen';
 import SignUpScreen from './src/components/SignUpScreen';
 import HomeScreen from './src/components/HomeScreen';
 import Footer from './src/components/Footer';
+import Navigation from './src/components/Navigation/Navigation';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 const App: () => React$Node = () => {
-  
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.root}>
-        <SignInScreen/>
-      </SafeAreaView>
-    </>
-  );
+  return <Navigation />;
 };
-
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor : "#F9FBFC"
-  }
-});
 
 export default App;
