@@ -1,1 +1,1 @@
-export const BASE_URL = 'randimal-osondemand.orangehrm.com'
+export const BASE_URL = 'https://randimal-osondemand.orangehrm.com/';

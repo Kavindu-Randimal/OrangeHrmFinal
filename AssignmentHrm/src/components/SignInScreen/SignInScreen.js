@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -11,16 +11,19 @@ import Logo from '../../../assets/images/logo.png';
 import CustomButton from '../CustomButton';
 import CustomInput from '../CustomInput';
 import Footer from '../Footer';
+import {AuthContext} from '../../Context/AuthContext';
 
 const SignInScreen = ({navigation}) => {
-  const [userName, setUserName] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+
+  const {isLoading, login} = useContext(AuthContext);
 
   const {height} = useWindowDimensions();
 
-  const onSignInPressed = () => {
-    console.warn('Sign In');
-  };
+  // const onSignInPressed = () => {
+  //   console.warn('Sign In');
+  // };
 
   const onForgotPasswordPress = () => {
     console.warn('forgot password press');
@@ -30,12 +33,13 @@ const SignInScreen = ({navigation}) => {
     console.warn('sign with intagram');
   };
 
-  const onSignUpPress = () => {
-    console.warn('dont have an account');
-  };
+  // const onSignUpPress = () => {
+  //   console.warn('dont have an account');
+  // };
 
   return (
     <View style={styles.root}>
+      {/* <Spinner visible={isLoading} /> */}
       <ScrollView>
         <Image
           source={Logo}
@@ -45,7 +49,7 @@ const SignInScreen = ({navigation}) => {
 
         <CustomInput
           placeholder="User Name"
-          value={userName}
+          value={username}
           setValue={setUserName}
         />
 
@@ -58,7 +62,9 @@ const SignInScreen = ({navigation}) => {
 
         <CustomButton
           text="Sign In"
-          onPress={onForgotPasswordPress}
+          onPress={() => {
+            login(username, password);
+          }}
           type="PRIMARY"
         />
 
