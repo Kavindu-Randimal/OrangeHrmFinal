@@ -10,44 +10,55 @@ export const AuthProvider = ({children}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const login = (username, password) => {
-    setIsLoading(true);
+    // setIsLoading(true);
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    let body = {
-      client_id: username,
-      client_secret: password,
-      grant_type: 'client_credentials',
-    };
-
-    let bodyString = [];
-    for (key in body) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(body[key]);
-      bodyString.push(encodedKey + '=' + encodedValue);
+    if (
+      username == '' ||
+      (reg.test(username) === false && password == password)
+    ) {
+      alert('please fill the username field correctly');
     }
+    if (username == username && reg.test(username) === true && password == '') {
+      alert('password field is empty');
+    } else {
+      let body = {
+        client_id: username,
+        client_secret: password,
+        grant_type: 'client_credentials',
+      };
 
-    let axiosConfig = {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Accept: 'application/json',
-      },
-    };
-    axios
-      .post(
-        `${BASE_URL}/symfony/web/index.php/oauth/issueToken`,
-        bodyString.join('&'),
-        axiosConfig,
-      )
-      .then(res => {
-        let userInfo = res.data;
-        console.log(userInfo);
-        setUserInfo(userInfo);
-        AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
-        setIsLoading(false);
-      })
-      .catch(e => {
-        console.log(`login error ${e}`);
-        setIsLoading(false);
-      });
+      let bodyString = [];
+      for (key in body) {
+        var encodedKey = encodeURIComponent(key);
+        var encodedValue = encodeURIComponent(body[key]);
+        bodyString.push(encodedKey + '=' + encodedValue);
+      }
+
+      let axiosConfig = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json',
+        },
+      };
+      axios
+        .post(
+          `${BASE_URL}/symfony/web/index.php/oauth/issueToken`,
+          bodyString.join('&'),
+          axiosConfig,
+        )
+        .then(res => {
+          let userInfo = res.data;
+          console.log(userInfo);
+          setUserInfo(userInfo);
+          AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
+          setIsLoading(false);
+        })
+        .catch(e => {
+          console.log(`login error ${e}`);
+          setIsLoading(false);
+        });
+    }
   };
 
   const logout = () => {
