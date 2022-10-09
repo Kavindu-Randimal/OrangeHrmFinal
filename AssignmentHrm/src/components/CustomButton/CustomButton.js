@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
 
   container_LOGOUT: {
     backgroundColor: 'red',
+    width: '40%',
+    marginLeft: 95,
+    marginTop: 40,
   },
 
   text: {

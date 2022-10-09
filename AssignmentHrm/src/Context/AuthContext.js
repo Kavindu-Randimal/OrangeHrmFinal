@@ -21,6 +21,8 @@ export const AuthProvider = ({children}) => {
     }
     if (username == username && reg.test(username) === true && password == '') {
       alert('password field is empty');
+    }
+    if (username == userInfo.username && password == userInfo.password) {
     } else {
       let body = {
         client_id: username,
@@ -49,10 +51,23 @@ export const AuthProvider = ({children}) => {
         )
         .then(res => {
           let userInfo = res.data;
-          console.log(userInfo);
+          console.log(userInfo.access_token);
           setUserInfo(userInfo);
           AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
           setIsLoading(false);
+
+          axios
+            .get(`${BASE_URL}/symfony/web/index.php/api/v1/employee/1`, {
+              headers: {Authorization: `Bearer ${userInfo.access_token}`},
+            })
+            .then(res => {
+              console.log('----------------------------------');
+              console.log(res.data);
+            })
+            .catch(e => {
+              console.log(`get details error ${e}`);
+              setIsLoading(false);
+            });
         })
         .catch(e => {
           console.log(`login error ${e}`);
@@ -84,8 +99,75 @@ export const AuthProvider = ({children}) => {
       });
   };
 
+  // const getDetails = () => {
+  //   axios
+  //     .get(
+  //       'https://randimal-osondemand.orangehrm.com/symfony/web/index.php/api/v1/employee/1',
+  //     )
+  //     .then(response => {
+  //       console.log(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
+
+  // const getAll = token => {
+  //   axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+  //   return axios.get(
+  //     'https://randimal-osondemand.orangehrm.com/symfony/web/index.php/api/v1/employee/1',
+  //   );
+  // };
+
+  // const getAll = () => {
+  //   const api = `https://randimal-osondemand.orangehrm.com/symfony/web/index.php/api/v1/employee/1`;
+  //   axios
+  //     .get(api, {headers: {Authorization: `Bearer ${userInfo.access_token}`}})
+  //     .then(res => {
+  //       console.log(res.data);
+  //     });
+  // };
+
+  // const getAll = () => {
+  //   setIsLoading(true);
+
+  //   axios
+  //     .get(
+  //       `${BASE_URL}/symfony/web/index.php/api/v1/employee/1`,
+  //       {},
+  //       {
+  //         headers: {Authorization: `Bearer${userInfo.access_token}`},
+  //       },
+  //     )
+  //     .then(res => {
+  //       console.log(res.data);
+  //       // AsyncStorage.removeItem('userInfo');
+  //       // setUserInfo({});
+  //       // setIsLoading(false);
+  //     })
+  //     .catch(e => {
+  //       console.log(`get details error ${e}`);
+  //       setIsLoading(false);
+  //     });
+  // };
+
+  const getAll = () => {
+    console.log('token ' + userInfo.access_token);
+    axios
+      .get(`${BASE_URL}/symfony/web/index.php/api/v1/employee/1`, {
+        headers: {Authorization: `Bearer ${userInfo.access_token}`},
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(e => {
+        console.log(`get details error ${e}`);
+        setIsLoading(false);
+      });
+  };
+
   return (
-    <AuthContext.Provider value={{isLoading, userInfo, login, logout}}>
+    <AuthContext.Provider value={{isLoading, userInfo, login, logout, getAll}}>
       {children}
     </AuthContext.Provider>
   );

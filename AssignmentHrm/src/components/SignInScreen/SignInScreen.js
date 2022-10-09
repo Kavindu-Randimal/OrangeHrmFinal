@@ -6,6 +6,7 @@ import {
   StyleSheet,
   useWindowDimensions,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import Logo from '../../../assets/images/logo.png';
 import CustomButton from '../CustomButton';
@@ -17,13 +18,9 @@ const SignInScreen = ({navigation}) => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
-  const {isLoading, login} = useContext(AuthContext);
+  const {isLoading, login, getAll} = useContext(AuthContext);
 
   const {height} = useWindowDimensions();
-
-  // const onSignInPressed = () => {
-  //   console.warn('Sign In');
-  // };
 
   const onForgotPasswordPress = () => {
     console.warn('forgot password press');
@@ -32,10 +29,6 @@ const SignInScreen = ({navigation}) => {
   const onSIgnInInstagram = () => {
     console.warn('sign with intagram');
   };
-
-  // const onSignUpPress = () => {
-  //   console.warn('dont have an account');
-  // };
 
   return (
     <View style={styles.root}>
@@ -96,7 +89,6 @@ const SignInScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
-    // padding: 5,
     flex: 1,
     width: '100%',
   },

@@ -12,10 +12,11 @@ import ProfilePic from '../../../assets/images/ProfilePicture.png';
 import {AuthContext} from '../../Context/AuthContext';
 import Footer from '../Footer';
 import CustomButton from '../CustomButton';
+
 const HomeScreen = () => {
   const {height} = useWindowDimensions();
 
-  const {userInfo, isLoading, logout} = useContext(AuthContext);
+  const {userInfo, isLoading, logout, login} = useContext(AuthContext);
 
   return (
     <View style={styles.root}>
@@ -27,7 +28,7 @@ const HomeScreen = () => {
           resizeMethod="contain"
         />
 
-        <Text style={styles.text}>Name:</Text>
+        <Text style={styles.text}>Name: </Text>
         <Text style={styles.text}>Email:</Text>
         <Text style={styles.para}>
           New Note. I am a new user. or. Login. Style Premium. Handwriting.
