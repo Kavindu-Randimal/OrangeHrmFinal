@@ -33,53 +33,53 @@ const SignInScreen = ({navigation}) => {
   return (
     <View style={styles.root}>
       {/* <Spinner visible={isLoading} /> */}
-      <ScrollView>
-        <Image
-          source={Logo}
-          style={[styles.logo, {height: height * 0.3}]}
-          resizeMode="contain"
-        />
+      {/* <ScrollView> */}
+      <Image
+        source={Logo}
+        style={[styles.logo, {height: height * 0.3}]}
+        resizeMode="contain"
+      />
 
-        <CustomInput
-          placeholder="User Name"
-          value={username}
-          setValue={setUserName}
-        />
+      <CustomInput
+        placeholder="User Name"
+        value={username}
+        setValue={setUserName}
+      />
 
-        <CustomInput
-          placeholder="Password"
-          value={password}
-          setValue={setPassword}
-          secureTextEntry
-        />
+      <CustomInput
+        placeholder="Password"
+        value={password}
+        setValue={setPassword}
+        secureTextEntry
+      />
 
-        <CustomButton
-          text="Sign In"
-          onPress={() => {
-            login(username, password);
-          }}
-          type="PRIMARY"
-        />
+      <CustomButton
+        text="Sign In"
+        onPress={() => {
+          login(username, password);
+        }}
+        type="PRIMARY"
+      />
 
-        <CustomButton
-          text="forgot password"
-          onPress={onForgotPasswordPress}
-          type="TERTIARY"
-        />
+      <CustomButton
+        text="forgot password"
+        onPress={onForgotPasswordPress}
+        type="TERTIARY"
+      />
 
-        <CustomButton
-          text="Sign With Instagram"
-          onPress={onSIgnInInstagram}
-          bgColor="#FFD4F2"
-          fgColor="#ff00b9"
-        />
+      <CustomButton
+        text="Sign With Instagram"
+        onPress={onSIgnInInstagram}
+        bgColor="#FFD4F2"
+        fgColor="#ff00b9"
+      />
 
-        <CustomButton
-          text="don't have an account create one"
-          onPress={() => navigation.navigate('SignUp')}
-          type="TERTIARY"
-        />
-      </ScrollView>
+      <CustomButton
+        text="don't have an account create one"
+        onPress={() => navigation.navigate('SignUp')}
+        type="TERTIARY"
+      />
+      {/* </ScrollView> */}
 
       <Footer />
     </View>
@@ -89,7 +89,7 @@ const SignInScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
-    flex: 1,
+    // flex: 1,
     width: '100%',
   },
   logo: {
