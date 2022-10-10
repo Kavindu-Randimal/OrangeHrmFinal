@@ -29,8 +29,8 @@ const HomeScreen = () => {
           resizeMethod="contain"
         />
 
-        <Text style={styles.text}>Name:</Text>
-        <Text style={styles.text}>Email:</Text>
+        <Text style={styles.text}>Name: Kavindu Randimal</Text>
+        <Text style={styles.text}>Email: kavi.randimal97@gmail.com</Text>
         <Text style={styles.para}>
           New Note. I am a new user. or. Login. Style Premium. Handwriting.
           Standard. Typeset. Sync. Adylitica. GDrive. Premium. Dropbox. Premium.
